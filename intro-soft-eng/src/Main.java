@@ -5,6 +5,17 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         Random dice = new Random();
+        Player player = new PlayerComputer();
+
+        try {
+            player.setName("Joe");
+        }
+        catch (IllegalArgumentException ex) {
+            System.err.println("Error: " + ex.getMessage());
+        }
+        catch (Exception ex) {
+            System.out.println("Error");
+        }
 
         int upperBound = 6;
         int userInput;
@@ -15,16 +26,14 @@ public class Main {
         System.out.println("Dice rolled: " + diceResult);
 
         do {
-            System.out.print("Your guess: ");
-            // userInput = scanner.nextInt();
+            System.out.print(player.getName() + " guessed: ");
 
-            // Testing
-            userInput = dice.nextInt(upperBound) + 1;
+            userInput = player.guess();
             System.out.println(userInput);
 
             if (userInput == diceResult) {
                 userGuessed = true;
-                System.out.println("You have guessed correctly!");
+                System.out.println(player.getName() + " have guessed correctly!");
             } else {
                 System.out.println("Wrong!");
             }
